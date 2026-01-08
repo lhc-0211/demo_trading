@@ -1,11 +1,16 @@
-import Loading from "./components/common/Loading";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
 
-function App() {
-  return (
-    <>
-      <Loading />
-    </>
-  );
+// Create a new router instance
+const router = createRouter({ routeTree });
+
+// Register the router instance for type safety
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
 }
 
-export default App;
+export function App() {
+  return <RouterProvider router={router} />;
+}
