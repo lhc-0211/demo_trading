@@ -1,12 +1,18 @@
+import logo from "../../../assets/imgs/logo/lhc_logo.png";
 import { Login } from "./components/login";
 import { ModeLanguage } from "./components/mode-language";
 import { ModeToggle } from "./components/mode-toggle";
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between py-2 px-2 md:px-6">
+    <header className="flex items-center justify-between pr-2 pl-2 md:pr-6">
       {/* logo */}
-      <div></div>
+      <div
+        className="bg-cover bg-center w-10 h-14"
+        style={{
+          backgroundImage: `url(${logo})`,
+        }}
+      ></div>
 
       {/* client setting */}
       <div className="flex flex-row gap-4 items-center">
@@ -22,6 +28,6 @@ export default function Header() {
         {/* Login */}
         <Login />
       </div>
-    </div>
+    </header>
   );
 }
