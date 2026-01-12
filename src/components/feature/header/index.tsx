@@ -8,7 +8,7 @@ export default function Header() {
     <header className="flex items-center justify-between pr-2 pl-2 md:pr-6">
       {/* logo */}
       <div
-        className="bg-cover bg-center w-10 h-14"
+        className="bg-cover bg-center md:w-10 md:h-14 w-7 h-10"
         style={{
           backgroundImage: `url(${logo})`,
         }}
@@ -23,7 +23,7 @@ export default function Header() {
           {/* Màu sắc */}
           <ModeToggle />
         </div>
-        <div className="w-px h-7 bg-gray-600"></div>
+        <div className="w-px h-4 md:h-7 bg-gray-600"></div>
 
         {/* Login */}
         <Login />
