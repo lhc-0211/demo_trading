@@ -2,7 +2,7 @@ import Error404 from "@/assets/lottie/Error-404.json";
 import lottie from "lottie-web";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/Button1";
 
 export default function Error({ reset }: { reset: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
