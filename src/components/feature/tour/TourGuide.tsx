@@ -2,9 +2,14 @@ import MasterBuilder from "@/assets/support/Master-Builder.png"; // điều ch�
 import { driver, type Driver } from "driver.js";
 import { useEffect, useRef } from "react";
 
+interface Popover {
+  title: string;
+  description: string;
+}
+
 interface TourStep {
   element: string;
-  popover: any;
+  popover: Popover;
 }
 
 interface TourGuideProps {
@@ -73,8 +78,14 @@ export default function TourGuide({
   useEffect(() => {
     driverRef.current = driver({
       showProgress: true,
-      doneBtnText,
+      allowClose: false,
       popoverClass,
+      prevBtnText:
+        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      nextBtnText:
+        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      doneBtnText:
+        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>',
 
       onPopoverRender: () => {
         if (avatarRef.current) {
