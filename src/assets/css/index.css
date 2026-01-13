@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 @import "@fontsource-variable/bricolage-grotesque";
 @import "driver.js/dist/driver.css";
-
-@custom-variant light (&:is(.light *));
+@import "./support.css";
+@custom-variant light (&: is(.light *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

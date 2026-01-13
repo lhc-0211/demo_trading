@@ -3,5 +3,8 @@
   "logout": "Đăng xuất",
   "cancel": "Thoát",
 
-  "login-title": "Chào mừng nhà đầu tư đến với nền tảng giao dịch LHC"
+  "login-title": "Chào mừng nhà đầu tư đến với nền tảng giao dịch LHC",
+  "reset-page": "Thử tải lại trang",
+  "pre-page": "Quay lại trang trước",
+  "go-home": "Về trang chủ"
 }
