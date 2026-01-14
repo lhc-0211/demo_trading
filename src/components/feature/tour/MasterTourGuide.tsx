@@ -45,7 +45,7 @@ export default function MasterTourGuide({
       z-index: 10001;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.2s ease;
     `;
 
     document.body.appendChild(img);
@@ -98,7 +98,7 @@ export default function MasterTourGuide({
 
   useEffect(() => {
     if (isOpen && driverRef.current) {
-      setTimeout(() => driverRef.current?.drive(), 150);
+      setTimeout(() => driverRef.current?.drive(), 300);
     }
   }, [isOpen]);
 
