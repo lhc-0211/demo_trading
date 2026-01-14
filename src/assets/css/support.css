@@ -5,7 +5,8 @@
   height: max-content;
 }
 
-.driver-popover.avatar-popover {
+.driver-popover.avatar-popover,
+.driver-popover.avatar-gobil {
   animation: popIn 0.2s ease;
   color: #111827;
   border-radius: 18px;
@@ -15,7 +16,14 @@
   font-size: 14px;
   line-height: 1.5;
   min-width: 100px;
+}
+
+.driver-popover.avatar-popover {
   border: 1px solid blue;
+}
+
+.driver-popover.avatar-gobil {
+  border: 1px solid green;
 }
 
 @keyframes popIn {
@@ -47,45 +55,77 @@
   border-right: 20px solid #fff;
 }
 
+/* Tail speech bubble (chỉ xuống avatar) */
+.driver-popover.avatar-gobil ::after {
+  content: "";
+  position: absolute;
+  bottom: -13px;
+  left: 40px;
+  transform: translateX(50%);
+  width: 0;
+  height: 0;
+  border-bottom: 13px solid transparent;
+  border-left: 20px solid #fff;
+}
+
 /* Title & description */
-.driver-popover.avatar-popover .driver-popover-title {
+.driver-popover.avatar-popover .driver-popover-title,
+.driver-popover.avatar-gobil .driver-popover-title {
   font-weight: 600;
   margin-bottom: 6px;
   font-size: 16px;
 }
 
-.driver-popover.avatar-popover .driver-popover-description {
+.driver-popover.avatar-popover .driver-popover-description,
+.driver-popover.avatar-gobil .driver-popover-description {
   opacity: 0.95;
   font-size: 14px;
 }
 
 /* Mobile responsive */
 @media (max-width: 767px) {
-  .driver-popover.avatar-popover {
+  .driver-popover.avatar-popover,
+  .driver-popover.avatar-gobil {
     border-radius: 12px;
     padding: 10px 12px;
     max-width: 85vw;
   }
 
-  .driver-popover.avatar-popover .driver-popover-title {
+  .driver-popover.avatar-popover .driver-popover-title,
+  .driver-popover.avatar-gobil .driver-popover-title {
     font-size: 14px;
     margin-bottom: 4px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-description {
+  .driver-popover.avatar-popover .driver-popover-description,
+  .driver-popover.avatar-gobil .driver-popover-description {
     font-size: 12px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-footer {
+  .driver-popover.avatar-popover .driver-popover-footer,
+  .driver-popover.avatar-gobil .driver-popover-footer {
     margin-top: 6px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-footer button {
+  .driver-popover.avatar-popover .driver-popover-footer button,
+  .driver-popover.avatar-gobil .driver-popover-footer button {
     padding: 4px 8px;
     font-size: 12px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-progress-text {
+  .driver-popover.avatar-popover .driver-popover-progress-text,
+  .driver-popover.avatar-gobil .driver-popover-progress-text {
     font-size: 11px;
   }
+}
+
+/* USER / HR */
+.driver-btn-user,
+.driver-btn-dev {
+  cursor: pointer;
+  border: none;
+}
+.driver-btn-user:hover,
+.driver-btn-dev:hover {
+  color: green;
 }

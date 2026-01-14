@@ -1,4 +1,4 @@
-import MasterBuilder from "@/assets/support/Master-Builder.png"; // điều chỉnh đường dẫn nếu cần
+import MasterBuilder from "@/assets/support/Master-Builder.png";
 import { driver, type Driver } from "driver.js";
 import { useEffect, useRef } from "react";
 
@@ -8,7 +8,7 @@ interface Popover {
 }
 
 interface TourStep {
-  element: string;
+  element?: string;
   popover: Popover;
 }
 
@@ -20,7 +20,7 @@ interface TourGuideProps {
   popoverClass?: string;
 }
 
-export default function TourGuide({
+export default function MasterTourGuide({
   steps,
   isOpen = false,
   onClose,
