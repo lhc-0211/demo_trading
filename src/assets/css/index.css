@@ -3,6 +3,8 @@
 @import "@fontsource-variable/bricolage-grotesque";
 @import "driver.js/dist/driver.css";
 @import "./support.css";
+@import "react-tooltip/dist/react-tooltip.css";
+
 @custom-variant light (&: is(.light *));
 
 @theme inline {

@@ -5,7 +5,7 @@
   height: max-content;
 }
 
-.driver-popover.avatar-popover,
+.driver-popover.avatar-master,
 .driver-popover.avatar-gobil {
   animation: popIn 0.2s ease;
   color: #111827;
@@ -18,7 +18,7 @@
   min-width: 100px;
 }
 
-.driver-popover.avatar-popover {
+.driver-popover.avatar-master {
   border: 1px solid blue;
 }
 
@@ -39,44 +39,18 @@
 
 /* Ẩn arrow mặc định */
 .driver-popover-arrow {
-  display: none !important;
-}
-
-/* Tail speech bubble (chỉ xuống avatar) */
-.driver-popover.avatar-popover::after {
-  content: "";
-  position: absolute;
-  bottom: -13px;
-  right: 40px;
-  transform: translateX(50%);
-  width: 0;
-  height: 0;
-  border-bottom: 13px solid transparent;
-  border-right: 20px solid #fff;
-}
-
-/* Tail speech bubble (chỉ xuống avatar) */
-.driver-popover.avatar-gobil ::after {
-  content: "";
-  position: absolute;
-  bottom: -13px;
-  left: 40px;
-  transform: translateX(50%);
-  width: 0;
-  height: 0;
-  border-bottom: 13px solid transparent;
-  border-left: 20px solid #fff;
+  display: none;
 }
 
 /* Title & description */
-.driver-popover.avatar-popover .driver-popover-title,
+.driver-popover.avatar-master .driver-popover-title,
 .driver-popover.avatar-gobil .driver-popover-title {
   font-weight: 600;
   margin-bottom: 6px;
   font-size: 16px;
 }
 
-.driver-popover.avatar-popover .driver-popover-description,
+.driver-popover.avatar-master .driver-popover-description,
 .driver-popover.avatar-gobil .driver-popover-description {
   opacity: 0.95;
   font-size: 14px;
@@ -84,36 +58,36 @@
 
 /* Mobile responsive */
 @media (max-width: 767px) {
-  .driver-popover.avatar-popover,
+  .driver-popover.avatar-master,
   .driver-popover.avatar-gobil {
     border-radius: 12px;
     padding: 10px 12px;
-    max-width: 85vw;
+    max-width: 95vw;
   }
 
-  .driver-popover.avatar-popover .driver-popover-title,
+  .driver-popover.avatar-master .driver-popover-title,
   .driver-popover.avatar-gobil .driver-popover-title {
     font-size: 14px;
     margin-bottom: 4px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-description,
+  .driver-popover.avatar-master .driver-popover-description,
   .driver-popover.avatar-gobil .driver-popover-description {
     font-size: 12px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-footer,
+  .driver-popover.avatar-master .driver-popover-footer,
   .driver-popover.avatar-gobil .driver-popover-footer {
     margin-top: 6px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-footer button,
+  .driver-popover.avatar-master .driver-popover-footer button,
   .driver-popover.avatar-gobil .driver-popover-footer button {
     padding: 4px 8px;
     font-size: 12px;
   }
 
-  .driver-popover.avatar-popover .driver-popover-progress-text,
+  .driver-popover.avatar-master .driver-popover-progress-text,
   .driver-popover.avatar-gobil .driver-popover-progress-text {
     font-size: 11px;
   }
@@ -128,4 +102,28 @@
 .driver-btn-user:hover,
 .driver-btn-dev:hover {
   color: green;
+}
+
+/* Bảng giá */
+#help-priceboard:hover {
+  color: #22c55e;
+}
+#help-priceboard::after {
+  background-color: #22c55e;
+}
+
+/* Đặt lệnh */
+#help-order:hover {
+  color: #f97316;
+}
+#help-order::after {
+  background-color: #f97316;
+}
+
+/* Liên hệ */
+#help-contract:hover {
+  color: #0ea5e9;
+}
+#help-contract::after {
+  background-color: #0ea5e9;
 }

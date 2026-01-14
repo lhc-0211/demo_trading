@@ -1,4 +1,4 @@
-import MasterBuilder from "@/assets/support/Goblin-Builder.png";
+import GoblinBuilder from "@/assets/support/Goblin-Builder.png";
 import { driver, type Driver } from "driver.js";
 import { useEffect, useRef } from "react";
 
@@ -25,7 +25,7 @@ export default function GoblinTourGuide({
   isOpen = false,
   onClose,
   doneBtnText = "Kết thúc",
-  popoverClass = "avatar-popover",
+  popoverClass = "avatar-gobil",
 }: TourGuideProps) {
   const avatarRef = useRef<HTMLImageElement | null>(null);
   const driverRef = useRef<Driver | null>(null);
@@ -33,13 +33,14 @@ export default function GoblinTourGuide({
   // Tạo avatar (Master Builder)
   useEffect(() => {
     const img = document.createElement("img");
-    img.src = MasterBuilder;
-    img.alt = "Tour guide";
+    img.src = GoblinBuilder;
+    img.alt = "goblin guide";
+    img.id = "goblin-avatar";
 
     img.style.cssText = `
       position: fixed;
-      bottom: 5%;
-      left: 10%;
+      bottom: 10px;
+      left: 40px;
       height: clamp(180px, 30vh, 420px);
       width: auto;
       z-index: 10001;
@@ -57,24 +58,6 @@ export default function GoblinTourGuide({
     };
   }, []);
 
-  // Di chuyển popover sát avatar
-  const movePopoverToAvatar = () => {
-    const avatar = avatarRef.current;
-    const popover = document.querySelector(
-      `.driver-popover.${popoverClass}`
-    ) as HTMLElement | null;
-
-    if (!avatar || !popover) return;
-
-    const avatarRect = avatar.getBoundingClientRect();
-
-    popover.style.position = "fixed";
-    popover.style.transform = "none";
-    popover.style.left = `${avatarRect.left + popover.offsetWidth / 2 + 10}px`;
-    popover.style.top = `${avatarRect.top - popover.offsetHeight}px`;
-  };
-
-  // Khởi tạo driver
   useEffect(() => {
     driverRef.current = driver({
       showProgress: true,
@@ -91,18 +74,21 @@ export default function GoblinTourGuide({
         if (avatarRef.current) {
           avatarRef.current.style.opacity = "1";
         }
-        // Đợi DOM update rồi mới move
-        setTimeout(movePopoverToAvatar, 0);
       },
 
       onDestroyed: () => {
-        if (avatarRef.current) {
-          avatarRef.current.style.opacity = "0";
-        }
+        if (avatarRef.current) avatarRef.current.style.opacity = "0";
         onClose?.();
       },
 
-      steps,
+      steps: steps.map((step) => ({
+        ...step,
+        popover: {
+          ...step.popover,
+          side: "right",
+          align: "start",
+        },
+      })),
     });
 
     return () => {
@@ -113,9 +99,7 @@ export default function GoblinTourGuide({
 
   useEffect(() => {
     if (isOpen && driverRef.current) {
-      setTimeout(() => {
-        driverRef.current?.drive();
-      }, 50);
+      setTimeout(() => driverRef.current?.drive(), 150); // tăng delay cho mobile
     } else if (!isOpen && driverRef.current) {
       driverRef.current?.destroy();
     }

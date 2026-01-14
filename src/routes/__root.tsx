@@ -7,6 +7,9 @@ import {
   Outlet,
   useRouterState,
 } from "@tanstack/react-router";
+import { lazy } from "react";
+
+const TourGuide = lazy(() => import("@/components/feature/tour"));
 
 const RootLayout = () => {
   const { status } = useRouterState({
@@ -24,11 +27,12 @@ const RootLayout = () => {
   }
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="flex flex-col gap-1 h-dvh">
+      <div className="flex flex-col gap-1 h-screen relative">
         <Header />
         <div className="flex-1">
           <Outlet />
         </div>
+        <TourGuide />
       </div>
     </ThemeProvider>
   );

@@ -1,4 +1,4 @@
-import MasterBuilder from "@/assets/support/Master-Builder.png";
+import Villager from "@/assets/support/Villager.png";
 import { driver, type Driver } from "driver.js";
 import { useEffect, useRef } from "react";
 
@@ -20,26 +20,27 @@ interface TourGuideProps {
   popoverClass?: string;
 }
 
-export default function MasterTourGuide({
+export default function VillagerTourGuide({
   steps,
   isOpen = false,
   onClose,
   doneBtnText = "Kết thúc",
-  popoverClass = "avatar-master",
+  popoverClass = "avatar-villager",
 }: TourGuideProps) {
   const avatarRef = useRef<HTMLImageElement | null>(null);
   const driverRef = useRef<Driver | null>(null);
 
+  // Tạo avatar (Master Builder)
   useEffect(() => {
     const img = document.createElement("img");
-    img.src = MasterBuilder;
-    img.alt = "master guide";
-    img.id = "master-avatar";
+    img.src = Villager;
+    img.alt = "villager guide";
+    img.id = "villager-avatar";
 
     img.style.cssText = `
       position: fixed;
-      bottom: 0;
-      right: 12px;
+      bottom: 10px;
+      left: 40px;
       height: clamp(180px, 30vh, 420px);
       width: auto;
       z-index: 10001;
@@ -59,7 +60,7 @@ export default function MasterTourGuide({
 
   useEffect(() => {
     driverRef.current = driver({
-      showProgress: true,
+      showProgress: false,
       allowClose: false,
       popoverClass,
       prevBtnText:
@@ -84,7 +85,7 @@ export default function MasterTourGuide({
         ...step,
         popover: {
           ...step.popover,
-          side: "left",
+          side: "right",
           align: "start",
         },
       })),
@@ -98,7 +99,9 @@ export default function MasterTourGuide({
 
   useEffect(() => {
     if (isOpen && driverRef.current) {
-      setTimeout(() => driverRef.current?.drive(), 150);
+      setTimeout(() => driverRef.current?.drive(), 150); // tăng delay cho mobile
+    } else if (!isOpen && driverRef.current) {
+      driverRef.current?.destroy();
     }
   }, [isOpen]);
 
