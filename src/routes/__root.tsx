@@ -30,7 +30,7 @@ const RootLayout = () => {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="flex flex-col gap-1 h-dvh relative">
         <Header />
-        <div className="flex-1">
+        <div className="flex-1 px-1 pb-1">
           <Outlet />
         </div>
         <TourGuide />
