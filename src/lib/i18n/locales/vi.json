@@ -6,5 +6,106 @@
   "login-title": "Chào mừng nhà đầu tư đến với nền tảng giao dịch LHC",
   "reset-page": "Thử tải lại trang",
   "pre-page": "Quay lại trang trước",
-  "go-home": "Về trang chủ"
+  "go-home": "Về trang chủ",
+
+  "tooltip": {
+    "support": "Trợ giúp"
+  },
+
+  "tour": {
+    "intro": {
+      "step1": {
+        "title": "Xin chào",
+        "desc1": "Chào mừng bạn đến với <b>LHC Web Trading</b>.",
+        "desc2": "Đây là dự án mô phỏng nền tảng giao dịch chứng khoán trực tuyến, được xây dựng với mục tiêu trải nghiệm và trình diễn."
+      },
+      "step2": {
+        "title": "LHC Web Trading",
+        "desc1": "LHC Web Trading là dự án mô phỏng nền tảng giao dịch chứng khoán trực tuyến, tập trung vào trải nghiệm người dùng, luồng nghiệp vụ giao dịch và khả năng mở rộng hệ thống.",
+        "desc2": "Dự án được xây dựng nhằm thể hiện kỹ năng frontend, tư duy UI/UX và xử lý dữ liệu thời gian thực."
+      },
+      "step3": {
+        "title": "Bạn đang xem với vai trò nào?",
+        "desc": "Nội dung giới thiệu sẽ được điều chỉnh theo vai trò bạn quan tâm.",
+        "roleUser": "Người dùng / HR",
+        "roleDev": "Developer"
+      }
+    },
+    "help": {
+      "title": "Xin chào",
+      "question": "Bạn đang cần trợ giúp?",
+      "hint": "Vui lòng chọn nội dung bạn cần hỗ trợ. Tôi sẽ hướng dẫn hoặc chuyển bạn đến kênh phù hợp.",
+      "priceboard": "Bảng giá",
+      "order": "Đặt lệnh",
+      "feature": "Giới thiệu",
+      "technology": "Công nghệ",
+      "contact": "Liên hệ LHC"
+    },
+    "userIntro": {
+      "version": {
+        "title": "Giới thiệu phiên bản",
+        "desc": "Đây là <b>phiên bản mô phỏng</b> giao diện và luồng thao tác giao dịch cơ bản, phục vụ mục đích trải nghiệm và minh hoạ."
+      },
+      "scope": {
+        "title": "Phạm vi trải nghiệm",
+        "desc": "Phiên bản hiện tại tập trung vào <b>bảng giá</b> và <b>chức năng đặt lệnh</b>, mô phỏng quy trình giao dịch phổ biến."
+      },
+      "priceboard": {
+        "title": "Bảng giá",
+        "desc": "Bảng giá hiển thị thông tin thị trường theo thời gian thực, giúp bạn theo dõi biến động nhanh chóng và trực quan."
+      },
+      "order": {
+        "title": "Đặt lệnh",
+        "desc": "Bạn có thể thực hiện các thao tác <b>đặt lệnh mua / bán cơ bản</b>, phù hợp cho việc làm quen giao diện."
+      },
+      "feature": {
+        "title": "Tính năng bổ trợ",
+        "desc": "Ngoài các chức năng chính, hệ thống còn hỗ trợ:",
+        "darkMode": "Chuyển đổi <b>giao diện sáng / tối</b>",
+        "i18n": "Hỗ trợ <b>đa ngôn ngữ</b>",
+        "custom": "Tuỳ chỉnh trải nghiệm người dùng"
+      },
+      "start": {
+        "title": "Bắt đầu trải nghiệm",
+        "desc": "Bạn đã sẵn sàng khám phá bảng giá và đặt lệnh trong phiên bản này.",
+        "contact": "Nếu cần hỗ trợ hoặc góp ý, vui lòng liên hệ LHC qua email:"
+      }
+    },
+    "devTour": {
+      "react19": {
+        "title": "React 19 & Rendering Model",
+        "desc": "<div>Dự án được xây dựng trên <b>React 19</b>, tận dụng các cải tiến mới về rendering và tối ưu hoá hiệu năng.</div><div>Component được thiết kế theo hướng <b>stateless khi có thể</b>, giảm phụ thuộc và tăng khả năng tái sử dụng.</div>"
+      },
+
+      "vite": {
+        "title": "Vite & Tooling",
+        "desc": "<div>Ứng dụng sử dụng <b>Vite</b> làm bundler, tối ưu thời gian khởi động và trải nghiệm phát triển.</div><div>Cấu trúc project rõ ràng, hỗ trợ hot reload nhanh và dễ mở rộng.</div>"
+      },
+
+      "typescript": {
+        "title": "TypeScript & Type Safety",
+        "desc": "<div>TypeScript được áp dụng xuyên suốt dự án để đảm bảo tính an toàn kiểu dữ liệu.</div><div>Các interface, type được thiết kế nhằm hạn chế lỗi runtime và hỗ trợ refactor.</div>"
+      },
+
+      "realtime": {
+        "title": "Realtime Data & WebSocket",
+        "desc": "<div>Dữ liệu bảng giá và trạng thái giao dịch được cập nhật theo thời gian thực qua <b>WebSocket</b>.</div><div>Luồng dữ liệu được kiểm soát để tránh update dư thừa.</div>"
+      },
+
+      "backend": {
+        "title": "Backend & Node.js",
+        "desc": "<div>Server realtime được xây dựng bằng <b>Node.js</b>.</div><div>Tập trung mô phỏng luồng dữ liệu thị trường và hỗ trợ frontend.</div>"
+      },
+
+      "codeOrg": {
+        "title": "Code Organization",
+        "desc": "<div>Code được tổ chức rõ ràng, dễ đọc và dễ bảo trì.</div><div>Tách biệt UI, logic và cấu hình để thuận tiện mở rộng.</div>"
+      },
+
+      "contact": {
+        "title": "Liên hệ",
+        "desc": "<div>Nếu muốn liên hệ hoặc góp ý, vui lòng email: <b style='color: blue;'>lhc021120@gmail.com</b></div>"
+      }
+    }
+  }
 }

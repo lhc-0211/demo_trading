@@ -1,48 +1,98 @@
-export const TOUR_INTRO_STEPS = [
+import type { TFunction } from "i18next";
+
+export const buildDevIntroSteps = (t: TFunction) => [
   {
-    element: "#goblin-avatar",
+    element: "#master-avatar",
     popover: {
-      title: "Xin chào",
-      description: `
-        <div>
-          Chào mừng bạn đến với <b>LHC Web Trading</b>.
-        </div>
-        <div>
-          Một dự án mô phỏng nền tảng giao dịch chứng khoán trực tuyến, được xây dựng với mục tiêu trải nghiệm và trình diễn.
-        </div>
-      `,
+      title: t("tour.devTour.react19.title"),
+      description: t("tour.devTour.react19.desc"),
     },
   },
 
   {
-    element: "#goblin-avatar",
+    element: "#master-avatar",
     popover: {
-      title: "LHC Web Trading",
-      description: `
-        <div>
-          LHC Web Trading là dự án mô phỏng nền tảng giao dịch chứng khoán trực tuyến, tập trung vào trải nghiệm người dùng, luồng nghiệp vụ giao dịch và khả năng mở rộng hệ thống.
-        </div>
-        <div>
-          Dự án được xây dựng nhằm thể hiện kỹ năng frontend, tư duy UI/UX và xử lý dữ liệu thời gian thực.
-        </div>
-      `,
+      title: t("tour.devTour.vite.title"),
+      description: t("tour.devTour.vite.desc"),
     },
   },
 
   {
+    element: "#master-avatar",
+    popover: {
+      title: t("tour.devTour.typescript.title"),
+      description: t("tour.devTour.typescript.desc"),
+    },
+  },
+
+  {
+    element: "#master-avatar",
+    popover: {
+      title: t("tour.devTour.realtime.title"),
+      description: t("tour.devTour.realtime.desc"),
+    },
+  },
+
+  {
+    element: "#master-avatar",
+    popover: {
+      title: t("tour.devTour.backend.title"),
+      description: t("tour.devTour.backend.desc"),
+    },
+  },
+
+  {
+    element: "#master-avatar",
+    popover: {
+      title: t("tour.devTour.codeOrg.title"),
+      description: t("tour.devTour.codeOrg.desc"),
+    },
+  },
+
+  {
+    element: "#master-avatar",
+    popover: {
+      title: t("tour.devTour.contact.title"),
+      description: t("tour.devTour.contact.desc"),
+    },
+  },
+];
+
+export const buildTourIntroSteps = (t: TFunction) => [
+  {
     element: "#goblin-avatar",
     popover: {
-      title: "Bạn đang xem với vai trò nào?",
+      title: t("tour.intro.step1.title"),
+      description: `
+        <div>${t("tour.intro.step1.desc1")}</div>
+        <div>${t("tour.intro.step1.desc2")}</div>
+      `,
+    },
+  },
+  {
+    element: "#goblin-avatar",
+    popover: {
+      title: t("tour.intro.step2.title"),
+      description: `
+        <div>${t("tour.intro.step2.desc1")}</div>
+        <div>${t("tour.intro.step2.desc2")}</div>
+      `,
+    },
+  },
+  {
+    element: "#goblin-avatar",
+    popover: {
+      title: t("tour.intro.step3.title"),
       description: `
         <div style="margin-bottom: 8px">
-          Nội dung giới thiệu sẽ được điều chỉnh theo vai trò bạn quan tâm.
+          ${t("tour.intro.step3.desc")}
         </div>
         <div style="display: flex; gap: 12px;">
           <div id="tour-user" class="driver-btn-user">
-            Người dùng / HR
+            ${t("tour.intro.step3.roleUser")}
           </div>
           <div id="tour-dev" class="driver-btn-dev">
-            Developer
+            ${t("tour.intro.step3.roleDev")}
           </div>
         </div>
       `,
@@ -50,190 +100,84 @@ export const TOUR_INTRO_STEPS = [
   },
 ];
 
-export const USER_INTRO_STEPS = [
+export const buildUserIntroSteps = (t: TFunction) => [
   {
     element: "#master-avatar",
     popover: {
-      title: "Phiên bản",
-      description: `
-      <div>
-        Đây là phiên bản mô phỏng giao diện
-        và luồng thao tác giao dịch cơ bản.
-      </div>
-    `,
+      title: t("tour.userIntro.version.title"),
+      description: `<div>${t("tour.userIntro.version.desc")}</div>`,
     },
   },
   {
     element: "#master-avatar",
     popover: {
-      title: "Phạm vi trải nghiệm",
-      description: `
-      <div>
-        Phiên bản hiện tại tập trung vào <b>bảng giá</b> và <b>chức năng đặt lệnh</b>.
-      </div>
-    `,
+      title: t("tour.userIntro.scope.title"),
+      description: `<div>${t("tour.userIntro.scope.desc")}</div>`,
     },
   },
   {
     element: "#master-avatar",
     popover: {
-      title: "Bảng giá",
-      description: `
-      <div>
-        Bảng giá hiển thị thông tin thị trường theo thời gian thực, giúp bạn theo dõi biến động nhanh chóng.
-      </div>
-    `,
+      title: t("tour.userIntro.priceboard.title"),
+      description: `<div>${t("tour.userIntro.priceboard.desc")}</div>`,
     },
   },
   {
     element: "#master-avatar",
     popover: {
-      title: "Đặt lệnh",
-      description: `
-      <div>
-        Tại đây, bạn có thể thực hiện các thao tác đặt lệnh mua / bán cơ bản.
-      </div>
-    `,
+      title: t("tour.userIntro.order.title"),
+      description: `<div>${t("tour.userIntro.order.desc")}</div>`,
     },
   },
   {
     element: "#master-avatar",
     popover: {
-      title: "Bắt đầu trải nghiệm",
+      title: t("tour.userIntro.feature.title"),
       description: `
-      <div>
-      <div>
-        Bạn đã sẵn sàng khám phá
-        bảng giá và đặt lệnh trong phiên bản này.
-      </div>
-      <div>Nếu muốn liên hệ hoặc góp ý vui lòng liên hệ cho LHC qua email: <b style="color: blue;">lhc021120@gmail.com</b>.
-      </div>
-      </div>
-    `,
-    },
-  },
-];
-
-export const DEV_INTRO_STEPS = [
-  {
-    element: "#master-avatar",
-    popover: {
-      title: "Developer Mode",
-      description: `
-      <div>
-        Bạn đang xem <b>LHC Web Trading</b> với vai trò <b>Developer</b>.
-      </div>
-      <div>
-        Phần hướng dẫn này tập trung vào kiến trúc frontend, cách tổ chức state, luồng dữ liệu và các điểm kỹ thuật chính.
-      </div>
-      <div>
-        Nội dung mang tính trình diễn và phân tích kỹ thuật, không đi sâu vào nghiệp vụ giao dịch.
-      </div>
-    `,
+        <div>
+          ${t("tour.userIntro.feature.desc")}
+          <ul style="margin: 6px 0 0 16px">
+            <li>${t("tour.userIntro.feature.darkMode")}</li>
+            <li>${t("tour.userIntro.feature.i18n")}</li>
+            <li>${t("tour.userIntro.feature.custom")}</li>
+          </ul>
+        </div>
+      `,
     },
   },
   {
     element: "#master-avatar",
     popover: {
-      title: "Kiến trúc tổng thể",
+      title: t("tour.userIntro.start.title"),
       description: `
-      <div>
-        Ứng dụng được xây dựng theo mô hình SPA, tách biệt rõ giữa giao diện, state và logic xử lý.
-      </div>
-      <ul style="margin: 6px 0 0 16px;">
-        <li>Component hóa theo chức năng</li>
-        <li>Quản lý state tập trung</li>
-        <li>Dễ mở rộng và bảo trì</li>
-      </ul>
-    `,
-    },
-  },
-  {
-    element: "#master-avatar",
-    popover: {
-      title: "Luồng dữ liệu & Realtime",
-      description: `
-      <div>
-        Dữ liệu bảng giá và trạng thái lệnh được cập nhật theo thời gian thực.
-      </div>
-      <div>
-        Hệ thống xử lý việc đồng bộ dữ liệu, giảm render không cần thiết và đảm bảo trải nghiệm mượt.
-      </div>
-    `,
-    },
-  },
-  {
-    element: "#master-avatar",
-    popover: {
-      title: "State & Form Handling",
-      description: `
-      <div>
-        Các form giao dịch được kiểm soát chặt chẽ nhằm đảm bảo tính chính xác dữ liệu đầu vào.
-      </div>
-      <div>
-        State được tách biệt giữa UI state và business state, giúp dễ kiểm soát và debug.
-      </div>
-    `,
-    },
-  },
-  {
-    element: "#master-avatar",
-    popover: {
-      title: "Hiệu năng & Trải nghiệm",
-      description: `
-      <div>
-        Ứng dụng chú trọng tối ưu hiệu năng render, đặc biệt với các màn hình có nhiều dữ liệu.
-      </div>
-      <div>
-        Áp dụng các kỹ thuật tối ưu để đảm bảo trải nghiệm người dùng ổn định.
-      </div>
-    `,
-    },
-  },
-  {
-    element: "#master-avatar",
-    popover: {
-      title: "Hoàn tất",
-      description: `
-      <div>
-        Cảm ơn bạn đã xem qua phần trình diễn kỹ thuật của <b>LHC Web Trading</b>.
-      </div>
-      <div>
-        Dự án được xây dựng với mục tiêu rõ ràng: code dễ đọc, dễ mở rộng và sát thực tế.
-      </div>
-      <div>Nếu muốn liên hệ hoặc góp ý vui lòng liên hệ cho LHC qua email: <b style="color: blue;">lhc021120@gmail.com</b>.
-      </div>
-    `,
+        <div style="margin-bottom: 6px">
+          ${t("tour.userIntro.start.desc")}
+        </div>
+        <div>
+          ${t("tour.userIntro.start.contact")}
+          <b style="color:#2563eb"> lhc021120@gmail.com</b>
+        </div>
+      `,
     },
   },
 ];
 
-export const HELP_STEPS = [
+export const buildHelpSteps = (t: TFunction) => [
   {
     element: "#villager-avatar",
     popover: {
-      title: "Xin chào",
+      title: t("tour.help.title"),
       description: `
-        <div>
-          Bạn đang cần trợ giúp?
-        </div>
+        <div>${t("tour.help.question")}</div>
         <div style="margin-bottom: 6px">
-          Vui lòng chọn nội dung bạn cần hỗ trợ.
-          Tôi sẽ hướng dẫn hoặc chuyển bạn đến kênh phù hợp.
+          ${t("tour.help.hint")}
         </div>
         <div style="display: flex; gap: 10px;">
-          <div id="help-priceboard" class="driver-btn-user">
-            Bảng giá
-          </div>
-          <div id="help-order" class="driver-btn-dev">
-            Đặt lệnh
-          </div>
-           <div id="help-feure" class="driver-btn-dev">
-            Giới thiệu
-          </div>
-          <div id="help-contract" class="driver-btn-dev">
-            Liên hệ LHC
-          </div>
+          <div id="help-priceboard">${t("tour.help.priceboard")}</div>
+          <div id="help-order">${t("tour.help.order")}</div>
+          <div id="help-feature">${t("tour.help.feature")}</div>
+          <div id="help-tech">${t("tour.help.technology")}</div>
+          <div id="help-contact">${t("tour.help.contact")}</div>
         </div>
       `,
     },

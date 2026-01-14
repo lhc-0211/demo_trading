@@ -3,6 +3,7 @@
   font-family: "Baloo 2", cursive !important;
   font-weight: 600;
   height: max-content;
+  max-width: 95vw;
 }
 
 .driver-popover.avatar-master,
@@ -107,6 +108,7 @@
 /* Bảng giá */
 #help-priceboard:hover {
   color: #22c55e;
+  cursor: pointer;
 }
 #help-priceboard::after {
   background-color: #22c55e;
@@ -115,23 +117,36 @@
 /* Đặt lệnh */
 #help-order:hover {
   color: #f97316;
+  cursor: pointer;
 }
 #help-order::after {
   background-color: #f97316;
 }
 
 /* Liên hệ */
-#help-contract:hover {
+#help-contact:hover {
   color: #0ea5e9;
+  cursor: pointer;
 }
-#help-contract::after {
+#help-contact::after {
   background-color: #0ea5e9;
 }
 
 /* Giới thiệu chức năng */
-#help-feure:hover {
+#help-feature:hover {
   color: #f472b6;
+  cursor: pointer;
 }
-#help-feure::after {
+
+#help-feature::after {
   background-color: #f472b6;
+}
+
+/* Công nghệ */
+#help-tech:hover {
+  color: #f43f5e;
+  cursor: pointer;
+}
+#help-tech::after {
+  background-color: #f43f5e;
 }

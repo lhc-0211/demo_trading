@@ -1,17 +1,27 @@
 import GoblinTourGuide from "@/components/feature/tour/GoblinTourGuide";
 import MasterTourGuide from "@/components/feature/tour/MasterTourGuide";
 import {
-  DEV_INTRO_STEPS,
-  HELP_STEPS,
-  TOUR_INTRO_STEPS,
-  USER_INTRO_STEPS,
+  buildDevIntroSteps,
+  buildHelpSteps,
+  buildTourIntroSteps,
+  buildUserIntroSteps,
 } from "@/configs";
 import { CircleQuestionMark } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import VillagerTourGuide from "./VillagerTourGuide";
 
 export default function TourGuide() {
-  const [isOpenGoblin, setIsOpenGoblin] = useState(true);
+  const { t } = useTranslation();
+
+  const [isOpenGoblin, setIsOpenGoblin] = useState(() => {
+    const tourIntro = localStorage.getItem("tour_intro");
+    if (!tourIntro) {
+      localStorage.setItem("tour_intro", "1");
+      return true;
+    }
+    return false;
+  });
   const [isOpenMaster, setIsOpenMaster] = useState(false);
   const [isOpenVillager, setIsOpenVillager] = useState(false);
   const [type, setType] = useState<"user" | "dev">("user");
@@ -25,7 +35,10 @@ export default function TourGuide() {
         "tour-dev"
       ) as HTMLDivElement | null;
       const btnFure = document.getElementById(
-        "help-feure"
+        "help-feature"
+      ) as HTMLDivElement | null;
+      const btnTech = document.getElementById(
+        "help-tech"
       ) as HTMLDivElement | null;
 
       if (btnUser && !btnUser.dataset.eventAttached) {
@@ -62,6 +75,18 @@ export default function TourGuide() {
         };
         btnFure.dataset.eventAttached = "true";
       }
+
+      if (btnTech && !btnTech.dataset.eventAttached) {
+        btnTech.onclick = () => {
+          setIsOpenGoblin(false);
+          setTimeout(() => {
+            setType("dev");
+            setIsOpenVillager(false);
+            setIsOpenMaster(true);
+          }, 150);
+        };
+        btnTech.dataset.eventAttached = "true";
+      }
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
@@ -69,20 +94,25 @@ export default function TourGuide() {
     return () => observer.disconnect();
   }, []);
 
+  const helpSteps = useMemo(() => buildHelpSteps(t), [t]);
+  const userIntroSteps = useMemo(() => buildUserIntroSteps(t), [t]);
+  const devIntroSteps = useMemo(() => buildDevIntroSteps(t), [t]);
+  const tourIntroSteps = useMemo(() => buildTourIntroSteps(t), [t]);
+
   return (
     <>
       <div
         className="absolute bottom-4 right-4"
         onClick={() => setIsOpenVillager(true)}
         data-tooltip-id="global-tooltip"
-        data-tooltip-content="Trợ giúp"
+        data-tooltip-content={`${t("tooltip.support")}`}
       >
         <CircleQuestionMark className="size-4 md:size-6 text-ring hover:text-foreground" />
       </div>
 
       {isOpenGoblin && (
         <GoblinTourGuide
-          steps={TOUR_INTRO_STEPS}
+          steps={tourIntroSteps}
           isOpen={isOpenGoblin}
           onClose={() => setIsOpenGoblin(false)}
           popoverClass="avatar-gobil"
@@ -91,7 +121,7 @@ export default function TourGuide() {
 
       {isOpenMaster && (
         <MasterTourGuide
-          steps={type === "user" ? USER_INTRO_STEPS : DEV_INTRO_STEPS}
+          steps={type === "user" ? userIntroSteps : devIntroSteps}
           isOpen={isOpenMaster}
           onClose={() => setIsOpenMaster(false)}
         />
@@ -99,7 +129,7 @@ export default function TourGuide() {
 
       {isOpenVillager && (
         <VillagerTourGuide
-          steps={HELP_STEPS}
+          steps={helpSteps}
           isOpen={isOpenVillager}
           onClose={() => setIsOpenVillager(false)}
         />

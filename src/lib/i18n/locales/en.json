@@ -1,0 +1,111 @@
+{
+  "logout": "Sign out",
+  "cancel": "Exit",
+
+  "login": "Login",
+  "login-title": "Welcome investors to the LHC trading platform",
+  "reset-page": "Try reloading the page",
+  "pre-page": "Return to previous page",
+  "go-home": "Back to home page",
+
+  "tooltip": {
+    "support": "Help"
+  },
+
+  "tour": {
+    "intro": {
+      "step1": {
+        "title": "Welcome",
+        "desc1": "Welcome to <b>LHC Web Trading</b>.",
+        "desc2": "This is a demo project simulating an online stock trading platform, built for experience and presentation purposes."
+      },
+      "step2": {
+        "title": "LHC Web Trading",
+        "desc1": "LHC Web Trading is a demo online stock trading platform focusing on user experience, trading workflows, and system scalability.",
+        "desc2": "This project showcases frontend skills, UI/UX thinking, and real-time data handling."
+      },
+      "step3": {
+        "title": "Which role are you viewing as?",
+        "desc": "The introduction content will be adjusted based on the role you are interested in.",
+        "roleUser": "User / HR",
+        "roleDev": "Developer"
+      }
+    },
+    "help": {
+      "title": "Hello",
+      "question": "Do you need any assistance?",
+      "hint": "Please choose the topic you need help with. I will guide you or redirect you to the appropriate channel.",
+      "priceboard": "Price Board",
+      "order": "Order Placement",
+      "feature": "Overview",
+      "technology": "Technologies",
+      "contact": "Contact LHC"
+    },
+    "userIntro": {
+      "version": {
+        "title": "Version Overview",
+        "desc": "This is a <b>demo version</b> showcasing the basic trading interface and workflow, built for experience and demonstration purposes."
+      },
+      "scope": {
+        "title": "Experience Scope",
+        "desc": "The current version focuses on the <b>price board</b> and <b>order placement</b>, simulating common trading workflows."
+      },
+      "priceboard": {
+        "title": "Price Board",
+        "desc": "The price board displays real-time market data, allowing you to track price movements quickly and intuitively."
+      },
+      "order": {
+        "title": "Order Placement",
+        "desc": "You can perform <b>basic buy / sell order</b> operations, suitable for getting familiar with the interface."
+      },
+      "feature": {
+        "title": "Additional Features",
+        "desc": "In addition to the core features, the system also supports:",
+        "darkMode": "<b>Light / Dark mode</b>",
+        "i18n": "<b>Multi-language</b> support",
+        "custom": "User experience customization"
+      },
+      "start": {
+        "title": "Start Exploring",
+        "desc": "You are now ready to explore the price board and place orders in this version.",
+        "contact": "For support or feedback, please contact LHC via email:"
+      }
+    },
+    "devTour": {
+      "react19": {
+        "title": "React 19 & Rendering Model",
+        "desc": "<div>The project is built on <b>React 19</b>, leveraging the latest improvements in rendering and performance optimization.</div><div>Components are designed to be <b>stateless whenever possible</b>, reducing dependencies and improving reusability.</div>"
+      },
+
+      "vite": {
+        "title": "Vite & Tooling",
+        "desc": "<div>The application uses <b>Vite</b> as its bundler, significantly improving startup time and developer experience.</div><div>The project structure is clear, supports fast hot reload, and is easy to scale with new features.</div>"
+      },
+
+      "typescript": {
+        "title": "TypeScript & Type Safety",
+        "desc": "<div>TypeScript is used throughout the project to ensure strong type safety.</div><div>Interfaces and types are carefully designed to minimize runtime errors and make future refactoring easier.</div>"
+      },
+
+      "realtime": {
+        "title": "Realtime Data & WebSocket",
+        "desc": "<div>Market data and trading states are updated in real time via <b>WebSocket</b>.</div><div>The data flow is carefully controlled to avoid unnecessary updates and ensure smooth UI performance.</div>"
+      },
+
+      "backend": {
+        "title": "Backend & Node.js",
+        "desc": "<div>The realtime server is built with <b>Node.js</b>.</div><div>It focuses on simulating market data flows and supporting frontend development and demonstration.</div>"
+      },
+
+      "codeOrg": {
+        "title": "Code Organization",
+        "desc": "<div>The codebase is organized to be clean, readable, and easy to maintain.</div><div>UI, business logic, and configuration are clearly separated to support future scalability.</div>"
+      },
+
+      "contact": {
+        "title": "Contact",
+        "desc": "<div>If you would like to get in touch or provide feedback, please email: <b style='color: blue;'>lhc021120@gmail.com</b></div>"
+      }
+    }
+  }
+}

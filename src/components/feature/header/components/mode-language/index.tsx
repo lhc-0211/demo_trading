@@ -7,27 +7,28 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { useEffect, useState } from "react";
 
-import cn from "@/assets/imgs/flag/cn.png";
-import es from "@/assets/imgs/flag/es.png";
-import uk from "@/assets/imgs/flag/uk.png";
-import vn from "@/assets/imgs/flag/vi.png";
+import en from "@/assets/imgs/flag/en.png";
+import vi from "@/assets/imgs/flag/vi.png";
 import { useTranslation } from "react-i18next";
 
 const LANGUAGES = {
-  vi: vn,
-  uk: uk,
-  cn: cn,
-  es: es,
+  vi: vi,
+  en: en,
 };
 
 type LanguageKey = keyof typeof LANGUAGES;
 
 export function ModeLanguage() {
-  const [language, setLanguage] = useState<LanguageKey>("vi");
+  const [language, setLanguage] = useState<LanguageKey>(() => {
+    return (localStorage.getItem("language") as LanguageKey) || "vi";
+  });
+
   const { i18n } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(language);
+    document.documentElement.lang = language;
+    localStorage.setItem("language", language);
   }, [language, i18n]);
 
   return (
@@ -52,13 +53,11 @@ export function ModeLanguage() {
             <img
               src={LANGUAGES[key]}
               alt={key}
-              className="w-6 h-6 rounded-full"
+              className="w-4 h-4 rounded-full"
             />
-            <span>
+            <span className="text-xs md:text-sm">
               {key === "vi" && "Vietnam"}
-              {key === "uk" && "USA"}
-              {key === "cn" && "China"}
-              {key === "es" && "Spain"}
+              {key === "en" && "USA"}
             </span>
           </DropdownMenuItem>
         ))}
