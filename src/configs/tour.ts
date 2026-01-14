@@ -37,7 +37,7 @@ export const TOUR_INTRO_STEPS = [
         <div style="margin-bottom: 8px">
           Nội dung giới thiệu sẽ được điều chỉnh theo vai trò bạn quan tâm.
         </div>
-        <div style="display: flex; gap: 8px;">
+        <div style="display: flex; gap: 12px;">
           <div id="tour-user" class="driver-btn-user">
             Người dùng / HR
           </div>
@@ -221,12 +221,15 @@ export const HELP_STEPS = [
           Vui lòng chọn nội dung bạn cần hỗ trợ.
           Tôi sẽ hướng dẫn hoặc chuyển bạn đến kênh phù hợp.
         </div>
-        <div style="display: flex; gap: 12px;">
+        <div style="display: flex; gap: 10px;">
           <div id="help-priceboard" class="driver-btn-user">
             Bảng giá
           </div>
           <div id="help-order" class="driver-btn-dev">
             Đặt lệnh
+          </div>
+           <div id="help-feure" class="driver-btn-dev">
+            Giới thiệu
           </div>
           <div id="help-contract" class="driver-btn-dev">
             Liên hệ LHC

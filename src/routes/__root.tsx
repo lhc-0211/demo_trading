@@ -8,6 +8,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { lazy } from "react";
+import { Tooltip } from "react-tooltip";
 
 const TourGuide = lazy(() => import("@/components/feature/tour"));
 
@@ -27,13 +28,15 @@ const RootLayout = () => {
   }
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="flex flex-col gap-1 h-screen relative">
+      <div className="flex flex-col gap-1 h-dvh relative">
         <Header />
         <div className="flex-1">
           <Outlet />
         </div>
         <TourGuide />
       </div>
+
+      <Tooltip id="global-tooltip" />
     </ThemeProvider>
   );
 };

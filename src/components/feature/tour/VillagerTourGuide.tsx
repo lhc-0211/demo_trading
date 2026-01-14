@@ -25,7 +25,7 @@ export default function VillagerTourGuide({
   isOpen = false,
   onClose,
   doneBtnText = "Kết thúc",
-  popoverClass = "avatar-villager",
+  popoverClass = "master-avatar",
 }: TourGuideProps) {
   const avatarRef = useRef<HTMLImageElement | null>(null);
   const driverRef = useRef<Driver | null>(null);
@@ -40,7 +40,7 @@ export default function VillagerTourGuide({
     img.style.cssText = `
       position: fixed;
       bottom: 10px;
-      left: 40px;
+      right: 40px;
       height: clamp(180px, 30vh, 420px);
       width: auto;
       z-index: 10001;
@@ -85,7 +85,7 @@ export default function VillagerTourGuide({
         ...step,
         popover: {
           ...step.popover,
-          side: "right",
+          side: "left",
           align: "start",
         },
       })),

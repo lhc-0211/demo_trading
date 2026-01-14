@@ -24,6 +24,9 @@ export default function TourGuide() {
       const btnDev = document.getElementById(
         "tour-dev"
       ) as HTMLDivElement | null;
+      const btnFure = document.getElementById(
+        "help-feure"
+      ) as HTMLDivElement | null;
 
       if (btnUser && !btnUser.dataset.eventAttached) {
         btnUser.onclick = () => {
@@ -47,6 +50,18 @@ export default function TourGuide() {
         };
         btnDev.dataset.eventAttached = "true";
       }
+
+      if (btnFure && !btnFure.dataset.eventAttached) {
+        btnFure.onclick = () => {
+          setIsOpenGoblin(false);
+          setTimeout(() => {
+            setType("user");
+            setIsOpenVillager(false);
+            setIsOpenMaster(true);
+          }, 150);
+        };
+        btnFure.dataset.eventAttached = "true";
+      }
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
@@ -55,10 +70,12 @@ export default function TourGuide() {
   }, []);
 
   return (
-    <div>
+    <>
       <div
         className="absolute bottom-4 right-4"
         onClick={() => setIsOpenVillager(true)}
+        data-tooltip-id="global-tooltip"
+        data-tooltip-content="Trợ giúp"
       >
         <CircleQuestionMark className="size-4 md:size-6 text-ring hover:text-foreground" />
       </div>
@@ -87,6 +104,6 @@ export default function TourGuide() {
           onClose={() => setIsOpenVillager(false)}
         />
       )}
-    </div>
+    </>
   );
 }
