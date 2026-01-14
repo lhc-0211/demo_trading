@@ -63,6 +63,7 @@
         "desc": "Ngoài các chức năng chính, hệ thống còn hỗ trợ:",
         "darkMode": "Chuyển đổi <b>giao diện sáng / tối</b>",
         "i18n": "Hỗ trợ <b>đa ngôn ngữ</b>",
+        "device": "Hỗ trợ <b>đa thiết bị</b>",
         "custom": "Tuỳ chỉnh trải nghiệm người dùng"
       },
       "start": {

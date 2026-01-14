@@ -139,6 +139,7 @@ export const buildUserIntroSteps = (t: TFunction) => [
           <ul style="margin: 6px 0 0 16px">
             <li>${t("tour.userIntro.feature.darkMode")}</li>
             <li>${t("tour.userIntro.feature.i18n")}</li>
+            <li>${t("tour.userIntro.feature.device")}</li>
             <li>${t("tour.userIntro.feature.custom")}</li>
           </ul>
         </div>

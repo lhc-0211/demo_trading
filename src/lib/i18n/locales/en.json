@@ -63,6 +63,7 @@
         "desc": "In addition to the core features, the system also supports:",
         "darkMode": "<b>Light / Dark mode</b>",
         "i18n": "<b>Multi-language</b> support",
+        "device": "<b>Multi-device</b> support",
         "custom": "User experience customization"
       },
       "start": {
