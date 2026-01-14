@@ -25,7 +25,7 @@ export default function VillagerTourGuide({
   isOpen = false,
   onClose,
   doneBtnText = "Kết thúc",
-  popoverClass = "master-avatar",
+  popoverClass = "villager-avatar",
 }: TourGuideProps) {
   const avatarRef = useRef<HTMLImageElement | null>(null);
   const driverRef = useRef<Driver | null>(null);
