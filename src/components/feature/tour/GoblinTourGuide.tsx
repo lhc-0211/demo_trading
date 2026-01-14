@@ -98,7 +98,7 @@ export default function GoblinTourGuide({
   }, [steps, doneBtnText, popoverClass, onClose]);
 
   useEffect(() => {
-    if (isOpen && driverRef.current) {
+    if (isOpen && driverRef.current && avatarRef.current) {
       setTimeout(() => driverRef.current?.drive(), 300); // tăng delay cho mobile
     } else if (!isOpen && driverRef.current) {
       driverRef.current?.destroy();

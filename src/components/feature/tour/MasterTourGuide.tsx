@@ -97,8 +97,10 @@ export default function MasterTourGuide({
   }, [steps, doneBtnText, popoverClass, onClose]);
 
   useEffect(() => {
-    if (isOpen && driverRef.current) {
+    if (isOpen && driverRef.current && avatarRef.current) {
       setTimeout(() => driverRef.current?.drive(), 300);
+    } else if (!isOpen && driverRef.current) {
+      driverRef.current?.destroy();
     }
   }, [isOpen]);
 
