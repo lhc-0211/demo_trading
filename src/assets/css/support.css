@@ -20,6 +20,18 @@
   min-width: 100px;
 }
 
+@keyframes breathing {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.02); /* hít vào */
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 .driver-popover.avatar-master {
   border: 1px solid blue;
 }

@@ -1,12 +1,19 @@
-import { generatePriceVolumeChartWithSession, getCssVar } from "@/lib/utils";
 import {
+  generatePriceVolumeChartWithSession,
+  getCssVar,
+  numberFormat,
+} from "@/utils";
+import {
+  type BaselineData,
   BaselineSeries,
   createChart,
+  type HistogramData,
   HistogramSeries,
   type IChartApi,
   type ISeriesApi,
   LastPriceAnimationMode,
   LineStyle,
+  type MouseEventParams,
   type Time,
   type UTCTimestamp,
 } from "lightweight-charts";
@@ -19,7 +26,7 @@ interface Props {
 const data = generatePriceVolumeChartWithSession({
   startPrice: 253.32,
   date: "2026-01-15",
-  intervalSec: 300, // 5 phút
+  intervalSec: 60, // 5 phút
 });
 
 const ChartRender = (props: Props) => {
@@ -30,6 +37,66 @@ const ChartRender = (props: Props) => {
   const baselineSeriesRef = useRef<ISeriesApi<"Baseline"> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
 
+  function updateTooltip(param: MouseEventParams<Time>) {
+    if (!tooltipRef.current) return;
+
+    const priceData = param.seriesData.get(
+      baselineSeriesRef.current as ISeriesApi<"Baseline">
+    ) as BaselineData<Time> | undefined;
+
+    const volumeData = param.seriesData.get(
+      volumeSeriesRef.current as ISeriesApi<"Histogram">
+    ) as HistogramData<Time> | undefined;
+
+    // Format thời gian theo múi giờ Việt Nam
+    const timeStr = param.time
+      ? new Date((param.time as number) * 1000).toLocaleString("vi-VN", {
+          timeZone: "Asia/Ho_Chi_Minh",
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      : "—";
+
+    let content = `Time: ${timeStr}<br>`;
+
+    // Giá (Baseline series)
+    if (priceData?.value !== undefined) {
+      content += `Price: ${numberFormat(priceData.value, 2, "-")}<br>`;
+    }
+
+    // Volume (Histogram series)
+    if (volumeData?.value !== undefined) {
+      content += `Volume: ${numberFormat(volumeData.value, 0, "-")}<br>`;
+    }
+
+    tooltipRef.current.innerHTML = content;
+  }
+
+  const handleGetTooltip = () => {
+    if (tooltipRef.current) {
+      const lastIndex = data.t.length - 1;
+      if (lastIndex >= 0) {
+        const lastTime = data.t[lastIndex] as UTCTimestamp;
+        const lastPrice = data.c[lastIndex];
+        const lastVolume = data.v[lastIndex];
+
+        const timeStr = new Date(lastTime * 1000).toLocaleString("vi-VN", {
+          timeZone: "Asia/Ho_Chi_Minh",
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+
+        tooltipRef.current.innerHTML = `Time: ${timeStr}<br>Price: ${numberFormat(lastPrice, 0, "-")}<br>Volume: ${numberFormat(lastVolume, 0, "-")}`;
+      } else {
+        tooltipRef.current.innerHTML = "";
+      }
+    }
+  };
+
   useEffect(() => {
     if (!chartContainerRef.current) {
       return;
@@ -38,14 +105,13 @@ const ChartRender = (props: Props) => {
     // Tạo div cho tooltip
     const tooltip = document.createElement("div");
     tooltip.style.position = "absolute";
-    tooltip.style.background = "var(--color-card)";
-    tooltip.style.color = "var(--color-foreground)";
-    tooltip.style.fontSize = "12px";
-    tooltip.style.padding = "4px 8px";
-    tooltip.style.borderRadius = "4px";
-    tooltip.style.display = "none";
+    tooltip.style.color = "var(--primary)";
+    tooltip.style.fontSize = "8px";
+    tooltip.style.padding = "0px 2px";
     tooltip.style.zIndex = "1000";
-    tooltip.style.pointerEvents = "none";
+    tooltip.style.left = `0px`;
+    tooltip.style.top = `-10px`;
+
     chartContainerRef.current.appendChild(tooltip);
     tooltipRef.current = tooltip;
 
@@ -66,7 +132,7 @@ const ChartRender = (props: Props) => {
         },
         textColor: getCssVar("--chart-text"),
         fontFamily: "Arial",
-        fontSize: 11,
+        fontSize: 8,
         attributionLogo: false,
       },
       grid: {
@@ -78,11 +144,9 @@ const ChartRender = (props: Props) => {
         },
       },
       timeScale: {
-        timeVisible: true,
-        secondsVisible: true,
         fixLeftEdge: true,
         fixRightEdge: true,
-        barSpacing: 2,
+        barSpacing: 4,
         tickMarkFormatter: (time: UTCTimestamp) => {
           const date = new Date(time * 1000);
           return date.toLocaleTimeString("vi-VN", {
@@ -135,7 +199,7 @@ const ChartRender = (props: Props) => {
     });
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
-        top: 0.8,
+        top: 0.7,
         bottom: 0,
       },
     });
@@ -146,57 +210,13 @@ const ChartRender = (props: Props) => {
 
     // Tùy chỉnh tooltip
     chart.subscribeCrosshairMove((param) => {
-      if (!tooltipRef.current || !param.time || !param.seriesData) {
-        if (tooltipRef.current) tooltipRef.current.style.display = "none";
-        return;
-      }
+      if (!tooltipRef.current) return;
 
-      const priceData = param.seriesData.get(baselineSeries);
-      const volumeData = param.seriesData.get(volumeSeries);
-      const time = new Date((param.time as number) * 1000).toLocaleString(
-        "vi-VN",
-        {
-          timeZone: "Asia/Ho_Chi_Minh",
-          hour12: false,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }
-      );
-
-      let tooltipContent = `${time}<br>`;
-      if (priceData && typeof priceData === "object" && "value" in priceData) {
-        tooltipContent += `${(priceData?.value + "", 0, "0")}<br>`;
-      }
-      if (
-        volumeData &&
-        typeof volumeData === "object" &&
-        "value" in volumeData
-      ) {
-        tooltipContent += `${(volumeData?.value + "", 0, "0")}`;
-      }
-
-      tooltipRef.current.innerHTML = tooltipContent;
-      tooltipRef.current.style.display = "block";
-
-      const tooltipHeight = 3 * 16 + 8 * 2;
-      const offsetX = 2;
-      const offsetY = 2;
-      let left =
-        (param.point?.x || 0) - offsetX - tooltipRef.current.offsetWidth;
-      let top = (param.point?.y || 0) - offsetY - tooltipHeight;
-
-      if (left < 0) left = 0;
-      if (top < 0) top = (param.point?.y || 0) + offsetY;
-
-      tooltipRef.current.style.left = `${left}px`;
-      tooltipRef.current.style.top = `${top}px`;
-    });
-
-    // Ẩn tooltip khi chuột ra khỏi biểu đồ
-    chart.subscribeCrosshairMove((param) => {
-      if (!param.point && tooltipRef.current) {
-        tooltipRef.current.style.display = "none";
+      if (!param.point || !param.time || param.seriesData.size === 0) {
+        handleGetTooltip();
+      } else {
+        // Hover bình thường
+        updateTooltip(param);
       }
     });
 
@@ -240,9 +260,9 @@ const ChartRender = (props: Props) => {
     // Xóa price line cũ và tạo mới
     baselineSeriesRef.current.createPriceLine({
       price: openIndex,
-      color: "#fdff12",
+      color: "#525151",
       lineWidth: 1,
-      lineStyle: LineStyle.Solid,
+      lineStyle: LineStyle.Dashed,
       axisLabelVisible: true,
     });
 
@@ -276,12 +296,15 @@ const ChartRender = (props: Props) => {
       from: minTime,
       to: maxTime,
     });
+
+    //Lấy tooltip lần đầu
+    handleGetTooltip();
   }, [data, openIndex]);
 
   return (
     <div
       ref={chartContainerRef}
-      className="chart-container w-full h-full no-swiping"
+      className="chart-container w-full h-full"
       style={{ position: "relative" }}
     />
   );
