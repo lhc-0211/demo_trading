@@ -41,11 +41,11 @@ const ChartRender = (props: Props) => {
     if (!tooltipRef.current) return;
 
     const priceData = param.seriesData.get(
-      baselineSeriesRef.current as ISeriesApi<"Baseline">
+      baselineSeriesRef.current as ISeriesApi<"Baseline">,
     ) as BaselineData<Time> | undefined;
 
     const volumeData = param.seriesData.get(
-      volumeSeriesRef.current as ISeriesApi<"Histogram">
+      volumeSeriesRef.current as ISeriesApi<"Histogram">,
     ) as HistogramData<Time> | undefined;
 
     // Format thời gian theo múi giờ Việt Nam
@@ -59,17 +59,20 @@ const ChartRender = (props: Props) => {
         })
       : "—";
 
-    let content = `Time: ${timeStr}<br>`;
+    let content = `
+    <div class="flex flex-row gap-2 ">
+      <div>Time: ${timeStr}</div>
+    `;
 
-    // Giá (Baseline series)
     if (priceData?.value !== undefined) {
-      content += `Price: ${numberFormat(priceData.value, 2, "-")}<br>`;
+      content += `<div>Price: ${numberFormat(priceData.value, 0, "-")}</div>`;
     }
 
-    // Volume (Histogram series)
     if (volumeData?.value !== undefined) {
-      content += `Volume: ${numberFormat(volumeData.value, 0, "-")}<br>`;
+      content += `<div>Volume: ${numberFormat(volumeData?.value, 0, "-")}</div>`;
     }
+
+    content += `</div>`;
 
     tooltipRef.current.innerHTML = content;
   }
@@ -90,7 +93,11 @@ const ChartRender = (props: Props) => {
           second: "2-digit",
         });
 
-        tooltipRef.current.innerHTML = `Time: ${timeStr}<br>Price: ${numberFormat(lastPrice, 0, "-")}<br>Volume: ${numberFormat(lastVolume, 0, "-")}`;
+        tooltipRef.current.innerHTML = `<div class="flex flex-row gap-2">
+  <div>Time: ${timeStr}</div>
+  <div>Price: ${numberFormat(lastPrice, 0, "-")}</div>
+  <div>Volume: ${numberFormat(lastVolume, 0, "-")}</div>
+</div>`;
       } else {
         tooltipRef.current.innerHTML = "";
       }
@@ -105,12 +112,13 @@ const ChartRender = (props: Props) => {
     // Tạo div cho tooltip
     const tooltip = document.createElement("div");
     tooltip.style.position = "absolute";
-    tooltip.style.color = "var(--primary)";
-    tooltip.style.fontSize = "8px";
+    tooltip.style.color = "var(--muted-foreground)";
+    tooltip.style.fontSize = "11px";
     tooltip.style.padding = "0px 2px";
     tooltip.style.zIndex = "1000";
     tooltip.style.left = `0px`;
     tooltip.style.top = `-10px`;
+    tooltip.style.pointerEvents = "none";
 
     chartContainerRef.current.appendChild(tooltip);
     tooltipRef.current = tooltip;
@@ -126,13 +134,15 @@ const ChartRender = (props: Props) => {
         visible: false,
         borderVisible: false,
       },
+      width: chartContainerRef.current.offsetWidth,
+      height: chartContainerRef.current.offsetHeight,
       layout: {
         background: {
           color: getCssVar("--chart-bg"),
         },
         textColor: getCssVar("--chart-text"),
         fontFamily: "Arial",
-        fontSize: 8,
+        fontSize: 12,
         attributionLogo: false,
       },
       grid: {
@@ -188,6 +198,8 @@ const ChartRender = (props: Props) => {
       bottomFillColor2: "#ff00171a",
       lineWidth: 1,
       lastPriceAnimation: LastPriceAnimationMode.Continuous,
+      lastValueVisible: false,
+      priceLineVisible: false,
     });
 
     const volumeSeries = chart.addSeries(HistogramSeries, {
@@ -196,6 +208,8 @@ const ChartRender = (props: Props) => {
         type: "volume",
       },
       priceScaleId: "",
+      lastValueVisible: false,
+      priceLineVisible: false,
     });
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
@@ -225,7 +239,7 @@ const ChartRender = (props: Props) => {
       if (chartContainerRef.current) {
         chart.resize(
           chartContainerRef.current.clientWidth,
-          chartContainerRef.current.clientHeight
+          chartContainerRef.current.clientHeight,
         );
       }
     };
@@ -262,7 +276,7 @@ const ChartRender = (props: Props) => {
       price: openIndex,
       color: "#525151",
       lineWidth: 1,
-      lineStyle: LineStyle.Dashed,
+      lineStyle: LineStyle.LargeDashed,
       axisLabelVisible: true,
     });
 
