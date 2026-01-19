@@ -117,7 +117,7 @@ const ChartRender = (props: Props) => {
     tooltip.style.padding = "0px 2px";
     tooltip.style.zIndex = "1000";
     tooltip.style.left = `0px`;
-    tooltip.style.top = `-10px`;
+    tooltip.style.top = `-12px`;
     tooltip.style.pointerEvents = "none";
 
     chartContainerRef.current.appendChild(tooltip);
