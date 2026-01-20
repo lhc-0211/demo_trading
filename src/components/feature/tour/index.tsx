@@ -1,6 +1,11 @@
 import GoblinTourGuide from "@/components/feature/tour/GoblinTourGuide";
 import MasterTourGuide from "@/components/feature/tour/MasterTourGuide";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   buildDevIntroSteps,
   buildHelpSteps,
   buildTourIntroSteps,
@@ -29,16 +34,16 @@ export default function TourGuide() {
   useEffect(() => {
     const observer = new MutationObserver(() => {
       const btnUser = document.getElementById(
-        "tour-user"
+        "tour-user",
       ) as HTMLDivElement | null;
       const btnDev = document.getElementById(
-        "tour-dev"
+        "tour-dev",
       ) as HTMLDivElement | null;
       const btnFure = document.getElementById(
-        "help-feature"
+        "help-feature",
       ) as HTMLDivElement | null;
       const btnTech = document.getElementById(
-        "help-tech"
+        "help-tech",
       ) as HTMLDivElement | null;
 
       if (btnUser && !btnUser.dataset.eventAttached) {
@@ -101,14 +106,19 @@ export default function TourGuide() {
 
   return (
     <>
-      <div
-        className="absolute bottom-4 right-4"
-        onClick={() => setIsOpenVillager(true)}
-        data-tooltip-id="global-tooltip"
-        data-tooltip-content={`${t("tooltip.support")}`}
-      >
-        <CircleQuestionMark className="size-4 md:size-6 text-ring hover:text-foreground" />
-      </div>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            className="absolute bottom-4 right-4"
+            onClick={() => setIsOpenVillager(true)}
+          >
+            <CircleQuestionMark className="size-4 md:size-6 text-ring hover:text-foreground" />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Trợ giúp</p>
+        </TooltipContent>
+      </Tooltip>
 
       {isOpenGoblin && (
         <GoblinTourGuide

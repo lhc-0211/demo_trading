@@ -8,7 +8,6 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { lazy } from "react";
-import { Tooltip } from "react-tooltip";
 
 const TourGuide = lazy(() => import("@/components/feature/tour"));
 
@@ -35,8 +34,6 @@ const RootLayout = () => {
         </div>
         <TourGuide />
       </div>
-
-      <Tooltip id="global-tooltip" />
     </ThemeProvider>
   );
 };
