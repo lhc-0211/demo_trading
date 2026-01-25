@@ -10,8 +10,10 @@ export default function Error({ reset }: { reset: () => void }) {
   const { t } = useTranslation();
 
   useEffect(() => {
+    if (!containerRef.current) return;
+
     const animation = lottie.loadAnimation({
-      container: containerRef.current!,
+      container: containerRef.current,
       renderer: "svg",
       loop: true,
       autoplay: true,

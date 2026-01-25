@@ -1,9 +1,10 @@
 import ChartIndex from "./components/chart-index";
 import NavigationMenuPriceBoard from "./components/nav-menu";
+import PriceTable from "./price-table";
 
 export default function PriceBoard() {
   return (
-    <div className="flex flex-col md:gap-4 gap-2">
+    <div className="w-full h-full flex flex-col md:gap-2 gap-1">
       {/* Thông tin index */}
       <div className="flex h-32 md:h-40 gap-2">
         <div className="flex-1 min-w-0 overflow-hidden">
@@ -13,8 +14,14 @@ export default function PriceBoard() {
       </div>
 
       {/* Menu bảng giá */}
-      <div className="">
+      <div>
         <NavigationMenuPriceBoard />
+      </div>
+
+      {/* Bảng giá */}
+      <div className="flex-1 min-h-0">
+        {" "}
+        <PriceTable />{" "}
       </div>
     </div>
   );
