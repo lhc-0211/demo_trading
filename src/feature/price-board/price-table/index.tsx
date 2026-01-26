@@ -56,6 +56,8 @@ export default function PriceTable() {
     // ------------------- Bên mua -------------------
     {
       headerName: "Bên mua",
+      headerClass: "col-header",
+
       children: [
         {
           field: "Giá 3",
@@ -120,7 +122,7 @@ export default function PriceTable() {
           headerTooltip: "Kéo & thả để sắp xếp cột",
         },
         {
-          field: "%",
+          field: "+/- (%)",
           width: 78,
           headerClass: "col-header",
           headerTooltip: "Kéo & thả để sắp xếp cột",
@@ -131,6 +133,8 @@ export default function PriceTable() {
     // ------------------- Bên bán -------------------
     {
       headerName: "Bên bán",
+      headerClass: "col-header",
+
       children: [
         {
           field: "Giá 1",
@@ -203,7 +207,9 @@ export default function PriceTable() {
 
     // ------------------- NĐT NN -------------------
     {
-      headerName: "GD NĐT NN",
+      headerName: "ĐTNN",
+      headerClass: "col-header",
+
       children: [
         {
           field: "Mua",
